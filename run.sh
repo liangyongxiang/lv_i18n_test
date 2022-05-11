@@ -1,4 +1,12 @@
 #!/bin/bash
 
-lv_i18n compile -l en-GB -t '*.yml' -o .
+echo "en-GB: ~" > en-GB.yml
+echo "zh-CN: ~" > zh-CN.yml
+
 lv_i18n extract -s test.c -t '*.yml'
+
+sed -i -e 's/line3: ~/line3: 行1\\n行二\\n行三/' zh-CN.yml
+
+lv_i18n compile -l en-GB -t '*.yml' -o .
+
+cat lv_i18n.c | grep line1
