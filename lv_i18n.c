@@ -35,7 +35,7 @@ static const lv_i18n_lang_t en_gb_lang = {
 };
 
 static lv_i18n_phrase_t zh_cn_singulars[] = {
-    {"line1\\nline2\\nline3", "行1\\n行二\\n行三"},
+    {"line1\nline2\nline3", "行1\n行二\n行三"},
     {NULL, NULL} // End mark
 };
 
@@ -82,10 +82,11 @@ void __lv_i18n_reset(void)
 /**
  * Set the languages for internationalization
  * @param langs pointer to the array of languages. (Last element has to be `NULL`)
+ *              if `NULL` `lv_i18n_language_pack` will be used.
  */
 int lv_i18n_init(const lv_i18n_language_pack_t * langs)
 {
-    if(langs == NULL) return -1;
+    if(langs == NULL) langs = lv_i18n_language_pack;
     if(langs[0] == NULL) return -1;
 
     current_lang_pack = langs;
@@ -120,7 +121,7 @@ static const char * __lv_i18n_get_text_core(lv_i18n_phrase_t * trans, const char
     uint16_t i;
     for(i = 0; trans[i].msg_id != NULL; i++) {
         if(strcmp(trans[i].msg_id, msg_id) == 0) {
-            /*The msg_id has found. Check the translation*/
+            /*The msg_id has been found. Check the translation*/
             if(trans[i].translation) return trans[i].translation;
         }
     }

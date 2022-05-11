@@ -1,4 +1,4 @@
 zh-CN:
-  line1\nline2\nline3: 行1\n行二\n行三
+  "line1\nline2\nline3": "行1\n行二\n行三"
   user_logged_in:
     other: ~
